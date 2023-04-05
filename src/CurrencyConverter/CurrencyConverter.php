@@ -32,6 +32,7 @@ class CurrencyConverter implements CurrencyConverterInterface {
      * @throws Exception
      */
     public function fetchExchangeRates(string $apiUrl): array {
+        // fetching data from the API
         $response = file_get_contents($apiUrl);
         $data = json_decode($response, true);
 

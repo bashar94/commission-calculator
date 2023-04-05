@@ -2,7 +2,7 @@
 
 namespace Bashar\CommissionCalculator\Entity\Client;
 
-class Client {
+class Client implements ClientInterface{
     private $id;
     private $type;
 
