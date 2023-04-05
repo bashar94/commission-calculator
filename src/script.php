@@ -12,6 +12,14 @@ use Bashar\CommissionCalculator\utils\WeeklyWithdrawalTracker;
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
+$privateWithdrawCommissionRate = (float) getenv('PRIVATE_WITHDRAW_COMMISSION_RATE');
+$businessWithdrawCommissionRate = (float) getenv('BUSINESS_WITHDRAW_COMMISSION_RATE');
+$depositCommissionRate = (float) getenv('DEPOSIT_COMMISSION_RATE');
+
+$freeWithdrawCount = (int) getenv('FREE_WITHDRAW_COUNT');
+$freeWithdrawAmount = (float) getenv('FREE_WITHDRAW_AMOUNT');
+$baseCurrency = getenv('BASE_CURRENCY');
+
 
 $csvReader = new CsvReader();
 try {
@@ -25,9 +33,17 @@ $currencyConverter = new CurrencyConverter();
 $weeklyWithdrawalTracker = new WeeklyWithdrawalTracker();
 $currencyConverter = new CurrencyConverter();
 
-$depositCommissionCalculator = new DepositCommissionCalculator(0.03);
-$privateWithdrawCommissionCalculator = new PrivateWithdrawCommissionCalculator(0.3, $weeklyWithdrawalTracker, $currencyConverter);
-$businessWithdrawCommissionCalculator = new BusinessWithdrawCommissionCalculator(0.5);
+$depositCommissionCalculator = new DepositCommissionCalculator($depositCommissionRate);
+$privateWithdrawCommissionCalculator = new PrivateWithdrawCommissionCalculator(
+    $privateWithdrawCommissionRate,
+    $weeklyWithdrawalTracker,
+    $currencyConverter,
+    $freeWithdrawCount,
+    $freeWithdrawAmount,
+    $baseCurrency
+);
+
+$businessWithdrawCommissionCalculator = new BusinessWithdrawCommissionCalculator($businessWithdrawCommissionRate);
 
 
 foreach ($operations as $operation) {
