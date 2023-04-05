@@ -1,6 +1,6 @@
 <?php
 
-namespace Bashar\CommissionCalculator\util;
+namespace Bashar\CommissionCalculator\utils;
 
 class CommissionRoundingUtility {
     public static function roundCommission(float $commission, int $decimalPlaces): float {

@@ -10,6 +10,8 @@ class CsvReader implements CsvReaderInterface {
     /**
      * @throws Exception
      */
+
+    //TODO: will change some conditions here for more stability
     public function read(string $filename, array $header = null): array {
         $file = fopen($filename, 'r');
         if (!$file) {

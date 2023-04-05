@@ -4,8 +4,8 @@ namespace Bashar\CommissionCalculator\CommissionCalculator;
 
 use Bashar\CommissionCalculator\CurrencyConverter\CurrencyConverterInterface;
 use Bashar\CommissionCalculator\Operation\Operation;
-use Bashar\CommissionCalculator\util\WeeklyWithdrawalTracker;
-use Bashar\CommissionCalculator\util\CommissionRoundingUtility;
+use Bashar\CommissionCalculator\utils\WeeklyWithdrawalTracker;
+use Bashar\CommissionCalculator\utils\CommissionRoundingUtility;
 
 class PrivateWithdrawCommissionCalculator extends WithdrawCommissionCalculator {
     private $privateWithdrawCommissionRate;
@@ -22,6 +22,7 @@ class PrivateWithdrawCommissionCalculator extends WithdrawCommissionCalculator {
         $clientId = $operation->getClient()->getId();
         $weekIdentifier = $operation->getDate()->format('oW');
 
+        // TODO: Need to change currency hard-coding and numeric dependencies
         $withdrawnAmountEur = $operation->getCurrency() === 'EUR' ? $operation->getAmount() : $this->currencyConverter->convert($operation->getAmount(), $operation->getCurrency(), 'EUR');
         $withdrawalData = $this->weeklyWithdrawalTracker->getWithdrawalData($clientId, $weekIdentifier);
         $this->weeklyWithdrawalTracker->addWithdrawal($clientId, $weekIdentifier, $withdrawnAmountEur);

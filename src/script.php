@@ -5,7 +5,7 @@ use Bashar\CommissionCalculator\CommissionCalculator\DepositCommissionCalculator
 use Bashar\CommissionCalculator\CommissionCalculator\PrivateWithdrawCommissionCalculator;
 use Bashar\CommissionCalculator\CsvReader\CsvReader;
 use Bashar\CommissionCalculator\CurrencyConverter\CurrencyConverter;
-use Bashar\CommissionCalculator\util\WeeklyWithdrawalTracker;
+use Bashar\CommissionCalculator\utils\WeeklyWithdrawalTracker;
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
@@ -20,9 +20,10 @@ try {
 }
 
 $currencyConverter = new CurrencyConverter();
-$depositCommissionCalculator = new DepositCommissionCalculator(0.03);
 $weeklyWithdrawalTracker = new WeeklyWithdrawalTracker();
 $currencyConverter = new CurrencyConverter();
+
+$depositCommissionCalculator = new DepositCommissionCalculator(0.03);
 $privateWithdrawCommissionCalculator = new PrivateWithdrawCommissionCalculator(0.3, $weeklyWithdrawalTracker, $currencyConverter);
 $businessWithdrawCommissionCalculator = new BusinessWithdrawCommissionCalculator(0.5);
 

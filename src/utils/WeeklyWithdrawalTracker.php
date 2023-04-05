@@ -1,6 +1,6 @@
 <?php
 
-namespace Bashar\CommissionCalculator\util;
+namespace Bashar\CommissionCalculator\utils;
 
 class WeeklyWithdrawalTracker {
     private $withdrawals;

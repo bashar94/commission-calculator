@@ -3,7 +3,7 @@
 namespace Bashar\CommissionCalculator\CommissionCalculator;
 
 use Bashar\CommissionCalculator\Operation\Operation;
-use Bashar\CommissionCalculator\util\CommissionRoundingUtility;
+use Bashar\CommissionCalculator\utils\CommissionRoundingUtility;
 
 class BusinessWithdrawCommissionCalculator extends WithdrawCommissionCalculator {
     private $businessWithdrawCommissionRate;
