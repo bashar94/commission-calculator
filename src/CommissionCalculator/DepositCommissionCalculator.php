@@ -2,7 +2,7 @@
 
 namespace Bashar\CommissionCalculator\CommissionCalculator;
 
-use Bashar\CommissionCalculator\Operation\Operation;
+use Bashar\CommissionCalculator\Entity\Operation\Operation;
 use Bashar\CommissionCalculator\utils\CommissionRoundingUtility;
 
 class DepositCommissionCalculator implements CommissionCalculatorInterface {

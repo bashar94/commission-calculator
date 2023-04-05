@@ -1,6 +1,6 @@
 <?php
 
-namespace Bashar\CommissionCalculator\Client;
+namespace Bashar\CommissionCalculator\Entity\Client;
 
 class Client {
     private $id;

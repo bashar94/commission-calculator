@@ -3,9 +3,9 @@
 namespace Bashar\CommissionCalculator\CommissionCalculator;
 
 use Bashar\CommissionCalculator\CurrencyConverter\CurrencyConverterInterface;
-use Bashar\CommissionCalculator\Operation\Operation;
-use Bashar\CommissionCalculator\utils\WeeklyWithdrawalTracker;
+use Bashar\CommissionCalculator\Entity\Operation\Operation;
 use Bashar\CommissionCalculator\utils\CommissionRoundingUtility;
+use Bashar\CommissionCalculator\utils\WeeklyWithdrawalTracker;
 
 class PrivateWithdrawCommissionCalculator extends WithdrawCommissionCalculator {
     private $privateWithdrawCommissionRate;

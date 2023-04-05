@@ -2,7 +2,7 @@
 
 namespace Bashar\CommissionCalculator\CommissionCalculator;
 
-use Bashar\CommissionCalculator\Operation\Operation;
+use Bashar\CommissionCalculator\Entity\Operation\Operation;
 
 abstract class WithdrawCommissionCalculator implements CommissionCalculatorInterface {
     public function calculate(Operation $operation): float {

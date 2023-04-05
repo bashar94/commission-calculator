@@ -1,9 +1,9 @@
 <?php
 
-namespace Bashar\CommissionCalculator\Operation;
+namespace Bashar\CommissionCalculator\Entity\Operation;
 
+use Bashar\CommissionCalculator\Entity\Client\Client;
 use DateTime;
-use Bashar\CommissionCalculator\Client\Client;
 
 interface OperationInterface {
     public function getDate(): DateTime;

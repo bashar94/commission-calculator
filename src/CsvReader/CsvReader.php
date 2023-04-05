@@ -2,8 +2,8 @@
 
 namespace Bashar\CommissionCalculator\CsvReader;
 
-use Bashar\CommissionCalculator\Client\Client;
-use Bashar\CommissionCalculator\Operation\Operation;
+use Bashar\CommissionCalculator\Entity\Client\Client;
+use Bashar\CommissionCalculator\Entity\Operation\Operation;
 use Exception;
 
 class CsvReader implements CsvReaderInterface {

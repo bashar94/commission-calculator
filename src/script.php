@@ -5,6 +5,8 @@ use Bashar\CommissionCalculator\CommissionCalculator\DepositCommissionCalculator
 use Bashar\CommissionCalculator\CommissionCalculator\PrivateWithdrawCommissionCalculator;
 use Bashar\CommissionCalculator\CsvReader\CsvReader;
 use Bashar\CommissionCalculator\CurrencyConverter\CurrencyConverter;
+use Bashar\CommissionCalculator\Entity\Client\ClientType;
+use Bashar\CommissionCalculator\Entity\Operation\OperationType;
 use Bashar\CommissionCalculator\utils\WeeklyWithdrawalTracker;
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
@@ -32,10 +34,10 @@ foreach ($operations as $operation) {
     $clientType = $operation->getClient()->getType();
     $operationType = $operation->getType();
 
-    if ($operationType === 'deposit') {
+    if ($operationType === OperationType::DEPOSIT) {
         $commission = $depositCommissionCalculator->calculate($operation);
-    } elseif ($operationType === 'withdraw') {
-        if ($clientType === 'private') {
+    } elseif ($operationType === OperationType::WITHDRAW) {
+        if ($clientType === ClientType::PRIVATE) {
             $commission = $privateWithdrawCommissionCalculator->calculate($operation);
         } else {
             $commission = $businessWithdrawCommissionCalculator->calculate($operation);
