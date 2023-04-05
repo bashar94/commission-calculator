@@ -7,7 +7,7 @@ use Bashar\CommissionCalculator\CsvReader\CsvReader;
 use Bashar\CommissionCalculator\CurrencyConverter\CurrencyConverter;
 use Bashar\CommissionCalculator\Entity\Client\ClientType;
 use Bashar\CommissionCalculator\Entity\Operation\OperationType;
-use Bashar\CommissionCalculator\utils\WeeklyWithdrawalTracker;
+use Bashar\CommissionCalculator\Utils\WeeklyWithdrawalTracker;
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
