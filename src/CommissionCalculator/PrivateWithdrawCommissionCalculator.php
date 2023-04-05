@@ -16,6 +16,14 @@ class PrivateWithdrawCommissionCalculator extends WithdrawCommissionCalculator
     private $freeWithdrawAmount;
     private $baseCurrency;
 
+    /**
+     * @param float $privateWithdrawCommissionRate The private withdrawal commission rate as a percentage.
+     * @param WeeklyWithdrawalTracker $weeklyWithdrawalTracker An instance of the WeeklyWithdrawalTracker to track weekly withdrawals
+     * @param CurrencyConverterInterface $currencyConverter An instance of the CurrencyConverterInterface to convert between currencies
+     * @param int $freeWithdrawCount The free withdrawals limit per week (3)
+     * @param float $freeWithdrawAmount The limit of free withdrawal amount allowed per week (1000)
+     * @param string $baseCurrency The base currency used for conversions and calculations ('EUR')
+     */
     public function __construct(
         float $privateWithdrawCommissionRate,
         WeeklyWithdrawalTracker $weeklyWithdrawalTracker,
@@ -31,6 +39,14 @@ class PrivateWithdrawCommissionCalculator extends WithdrawCommissionCalculator
         $this->freeWithdrawAmount = $freeWithdrawAmount;
         $this->baseCurrency = $baseCurrency;
     }
+
+    /**
+     * Calculates the withdrawal commission for private clients based on the given operation.
+     * Considers the free withdrawal count and free withdrawal amount limit.
+     *
+     * @param Operation $operation The operation for which the commission needs to be calculated.
+     * @return float The calculated commission for the withdrawal operation.
+     */
 
     protected function calculateWithdrawCommission(Operation $operation): float
     {
