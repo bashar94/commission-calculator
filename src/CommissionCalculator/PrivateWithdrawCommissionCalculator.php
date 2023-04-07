@@ -45,10 +45,10 @@ class PrivateWithdrawCommissionCalculator extends WithdrawCommissionCalculator
      * Considers the free withdrawal count and free withdrawal amount limit.
      *
      * @param Operation $operation The operation for which the commission needs to be calculated.
-     * @return float The calculated commission for the withdrawal operation.
+     * @return string The calculated commission for the withdrawal operation.
      */
 
-    protected function calculateWithdrawCommission(Operation $operation): float
+    protected function calculateWithdrawCommission(Operation $operation): string
     {
         $clientId = $operation->getClient()->getId();
         $weekIdentifier = $operation->getDate()->format('oW');
@@ -76,9 +76,14 @@ class PrivateWithdrawCommissionCalculator extends WithdrawCommissionCalculator
             $isWithinFreeAmount = $remainingFreeAmount >= $withdrawnAmountBaseCurrency;
 
             if (!$isWithinFreeAmount) {
-                // if not within the free amount limit, calculate the commission based on the excess amount
-                // and convert the excess amount to the operation currency
-                $excessAmount = $operation->getAmount() - $this->currencyConverter->convert($remainingFreeAmount, $this->baseCurrency, $operation->getCurrency());
+                // if not within the free amount limit, calculate the commission for the excess amount
+                if($remainingFreeAmount >= 0){
+                    // if the remaining free amount is greater than 0, then we can subtract the remaining free amount
+                    $excessAmount = $operation->getAmount() - $this->currencyConverter->convert($remainingFreeAmount, $this->baseCurrency, $operation->getCurrency());
+                }else{
+                    // It doesn't have any remaining free amount, so the excess amount is the same as the withdrawn amount
+                    $excessAmount = $operation->getAmount();
+                }
                 $commission = max($excessAmount, 0) * $this->privateWithdrawCommissionRate;
             }
         } else {

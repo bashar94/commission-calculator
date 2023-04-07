@@ -10,11 +10,13 @@ class CommissionRoundingUtility {
      * @param float $commission The commission value to be rounded up.
      * @param int $decimalPlaces The number of decimal places to round up to (CsvReader class has the calculation and
      * storing it in Operation entity).
-     * @return float The rounded-up commission value.
+     * @return string The rounded-up commission value.
      */
 
-    public static function roundCommission(float $commission, int $decimalPlaces): float {
+    public static function roundCommission(float $commission, int $decimalPlaces): string {
         $multiplier = pow(10, $decimalPlaces);
-        return ceil($commission * $multiplier) / $multiplier;
+        $roundedCommission = ceil($commission * $multiplier) / $multiplier;
+        return sprintf("%." . $decimalPlaces . "f", $roundedCommission);
     }
+
 }

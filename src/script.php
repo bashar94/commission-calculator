@@ -1,5 +1,8 @@
 <?php
 
+require __DIR__.'/../vendor/autoload.php';
+
+
 use Bashar\CommissionCalculator\CommissionCalculator\BusinessWithdrawCommissionCalculator;
 use Bashar\CommissionCalculator\CommissionCalculator\DepositCommissionCalculator;
 use Bashar\CommissionCalculator\CommissionCalculator\PrivateWithdrawCommissionCalculator;

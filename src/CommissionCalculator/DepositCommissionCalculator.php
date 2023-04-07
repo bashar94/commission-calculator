@@ -19,9 +19,9 @@ class DepositCommissionCalculator implements CommissionCalculatorInterface {
      * Calculates the commission for the deposit operation.
      *
      * @param Operation $operation The operation for which the commission needs to be calculated.
-     * @return float The calculated commission for the deposit operation.
+     * @return string The calculated commission for the deposit operation.
      */
-    public function calculate(Operation $operation): float {
+    public function calculate(Operation $operation): string {
         $commission = $operation->getAmount() * $this->depositCommissionRate;
         return CommissionRoundingUtility::roundCommission($commission, $operation->getDecimalPlaces());
     }

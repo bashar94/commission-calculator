@@ -19,9 +19,9 @@ class BusinessWithdrawCommissionCalculator extends WithdrawCommissionCalculator 
      * Calculates the commission for a business withdraw operation.
      *
      * @param Operation $operation The business withdraw operation
-     * @return float The calculated commission
+     * @return string The calculated commission
      */
-    protected function calculateWithdrawCommission(Operation $operation): float {
+    protected function calculateWithdrawCommission(Operation $operation): string {
         // Calculating the commission for business withdraw operations
         $commission = $operation->getAmount() * $this->businessWithdrawCommissionRate;
         return CommissionRoundingUtility::roundCommission($commission, $operation->getDecimalPlaces());

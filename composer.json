@@ -5,12 +5,12 @@
     "type": "project",
     "autoload": {
         "psr-4": {
-            "Paysera\\CommissionTask\\": "src"
+            "Bashar\\CommissionCalculator\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Paysera\\CommissionTask\\Tests\\": "tests"
+            "Bashar\\CommissionCalculator\\Tests\\": "tests"
         }
     },
     "require": {
@@ -20,8 +20,8 @@
         "vlucas/phpdotenv": "^4.3"
     },
     "require-dev": {
-        "phpunit/phpunit": "^6.5",
-        "friendsofphp/php-cs-fixer": "2.16"
+        "friendsofphp/php-cs-fixer": "2.16",
+        "phpunit/phpunit": "^6.5"
     },
     "config": {
         "sort-packages": true,
