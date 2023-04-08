@@ -90,6 +90,11 @@ class CsvReader implements CsvReaderInterface {
         // Close the CSV file
         fclose($file);
 
+        // Sort the operations array by operationDate in ascending order
+        usort($operations, function (Operation $a, Operation $b) {
+            return $a->getDate() <=> $b->getDate();
+        });
+
         // Return the array of Operation objects
         return $operations;
     }
