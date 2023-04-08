@@ -19,14 +19,19 @@ class CsvReader implements CsvReaderInterface {
      */
     public function read(string $filename, array $header = null): array {
         // Opening the CSV file for reading
-        $file = fopen($filename, 'r');
-        if (!$file) {
+        try{
+            $file = fopen($filename, 'r');
+        } catch (Exception $exception) {
             throw new Exception("Error opening CSV file.");
         }
 
         // If no header is given then checking if the first row of the file is the header
         if ($header === null) {
             $header = fgetcsv($file);
+
+            if(!$header) {
+                throw new Exception("Empty CSV file.");
+            }
 
             // Checking if all the columns in the first row are strings
             $isHeader = true;

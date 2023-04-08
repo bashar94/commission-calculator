@@ -12,6 +12,7 @@ use Bashar\CommissionCalculator\Entity\Client\ClientType;
 use Bashar\CommissionCalculator\Entity\Operation\OperationType;
 use Bashar\CommissionCalculator\Utils\WeeklyWithdrawalTracker;
 
+// Loading the .env file
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
@@ -26,7 +27,9 @@ $baseCurrency = getenv('BASE_CURRENCY');
 
 $csvReader = new CsvReader();
 try {
-    $operations = $csvReader->read('input.csv');
+    // Checking if a file name/path argument was provided
+    $fileName = $argv[1] ?? 'input.csv';
+    $operations = $csvReader->read($fileName);
 } catch (Exception $exception) {
     echo $exception->getMessage();
     exit;
@@ -34,7 +37,7 @@ try {
 
 $currencyConverter = new CurrencyConverter();
 $weeklyWithdrawalTracker = new WeeklyWithdrawalTracker();
-$currencyConverter = new CurrencyConverter();
+
 
 $depositCommissionCalculator = new DepositCommissionCalculator($depositCommissionRate);
 $privateWithdrawCommissionCalculator = new PrivateWithdrawCommissionCalculator(
