@@ -13,7 +13,7 @@ use Bashar\CommissionCalculator\Entity\Operation\OperationType;
 use Bashar\CommissionCalculator\Utils\WeeklyWithdrawalTracker;
 
 // Loading the .env file
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/../');
 $dotenv->load();
 
 $privateWithdrawCommissionRate = (float) getenv('PRIVATE_WITHDRAW_COMMISSION_RATE');
